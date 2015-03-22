@@ -1,0 +1,14 @@
+{
+  "name": "tread-js",
+  "version": "1.0.0",
+  "description": "A library to run asyncronous multi-threading in browser",
+  "main": "src/core/core.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "threading"
+  ],
+  "author": "Matheus Silva",
+  "license": "MIT"
+}
