@@ -6,21 +6,23 @@
 // The queue works by saving a array in the queue array with the following information priority url or id 
 function threadJs(maxThreads){
 	// Give information about the library version
-	this.info = "Version: "+version+" by Matheus Silva matheus@mugfoundation.com";
-	// loop trough arguments variable and transform it in array
+	this.info = "Version: "+thlibVersion+" by Matheus Silva matheus@mugfoundation.com";
+	// Loop trough arguments variable and transform it in array
 	for (var i = 0; i < arguments.length; i++) {
-		var arg[i] = arguments[i];
-	}
-	for (var i = 0; i < arg.length; i++) {
-		switch(arg[i]){
+		switch(arguments[i]){
 			case "no-queue-overrides":
-				var noQueueOverrides = true;
+				this.noQueueOverrides = true;
 			break;
 			default:
-				var noOptions = true;
+				this.noOptions = true;
 			break;
 		}
 	}
 	this.maxThreads = maxThreads || false;
+	this.queue = [];
+	this.spawnEventWrapper = new Event('ThreadReady');
+	while (this.queue.length > 0){
+		this.handler();	
+	}
 	return this;
 }
