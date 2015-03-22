@@ -1,6 +1,6 @@
 {
   "name": "client-thread-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A library to use muti-threading in the browser.",
   "main": "dist/thread.min.js",
   "scripts": {

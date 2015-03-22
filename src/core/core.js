@@ -20,9 +20,17 @@ function threadJs(maxThreads){
 	}
 	this.maxThreads = maxThreads || false;
 	this.queue = [];
+	this.runningThreads = [];
 	this.spawnEventWrapper = new Event('ThreadReady');
 	while (this.queue.length > 0){
 		this.handler();	
 	}
 	return this;
 }
+threadJs.prototype.getDebugInfo = function() {
+	var info = "the current queue is:\n"+this.queue+"and there are currently "+this.runningThreads.length-1+" running threads\n"+this.runningThreads;
+	var blob = new Blob([info]);
+	var url = window.URL.createObjectURL(blob);
+	document.body.innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
+	document.getElementById("dbui").click();
+};

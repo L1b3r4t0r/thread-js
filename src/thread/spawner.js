@@ -8,9 +8,9 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 	var blob = new Blob([data], mime);
 	this.item = [];
 	this.item[0] = blob;
-	this.item[1]		= priority;
-	this.item[2]		= this.lastPidInQueue + 1;
-	this.item[3]		= false;
+	this.item[1] = priority;
+	this.item[2] = this.lastPidInQueue + 1;
+	this.item[3] = false;
 	if (priority < this.queue.length && this.noQueueOverride === false || priority >= this.queue.length) {
 		this.queue[priority] = this.item;
 	}else if (this.noQueueOverride === true){

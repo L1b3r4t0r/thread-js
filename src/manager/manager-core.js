@@ -7,10 +7,12 @@ threadJs.prototype.handler = function() {
 	if (this.maxThreads === false) {
 		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
 		this.queue.splice(0, 1);
+		this.callToActivate();
 		this.dispatchEvent(this.spawnEventWrapper);
 	}else if (this.runningThreads.length <= this.maxThreads){
 		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
 		this.queue.splice(0, 1);
+		this.callToActivate();
 		this.dispatchEvent(this.spawnEventWrapper);
 	}
 	this.lastPidInQueue = this.queue.length-1;
