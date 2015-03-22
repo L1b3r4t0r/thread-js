@@ -2,4 +2,4 @@ To contribute Please read this guidelines first. For bug reporting: Be the most 
 ```javascript 
 youInstanceOfTheLib.getDebugInfo();
 ```
-this will overwrite all the page to print a url  this will get a report of the moment for you.
+this will get a report of the moment for you.
