@@ -2,7 +2,7 @@
 // Requesters: this file contains the requesters code they load in the scripts to be used
 // ========================================================-//-================================================================
 // Spawn a thread by download this function only download the javascript by ajax and passes it to the tread spawner itself
-threadJs.prototype.spawnByDownload = function(url, priority, errCallback, callToActivate) {
+threadJs.prototype.spawnByDownload = function(url, priority, errCallback) {
 	// create a wrapper to the ajax call
  	this.requestWrapper = new XMLHttpRequest();
  	// Parse the server response

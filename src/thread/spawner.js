@@ -21,5 +21,7 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 			this.queue[priority] = this.item;
 		}
 	}
-	this.handler();
+	while (this.stop !== true || this.queue <= 0){
+		this.handler();	
+	}
 };

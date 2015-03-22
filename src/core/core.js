@@ -22,9 +22,7 @@ function threadJs(maxThreads){
 	this.queue = [];
 	this.runningThreads = [];
 	this.spawnEventWrapper = new Event('ThreadReady');
-	while (this.queue.length > 0){
-		this.handler();	
-	}
+	this.stop = false;
 	return this;
 }
 threadJs.prototype.getDebugInfo = function() {
