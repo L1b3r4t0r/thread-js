@@ -1,8 +1,8 @@
 {
-  "name": "thread-js",
+  "name": "client-thread-js",
   "version": "1.0.0",
   "description": "A library to use muti-threading in the browser.",
-  "main": "dist/thread.js.min.js",
+  "main": "dist/thread.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +11,13 @@
     "url": "https://github.com/matheusxaviersi/thread-js.git"
   },
   "keywords": [
-    "threading",
-    "client-side"
+    "clientside",
+    "multi-threading",
+    "uitl",
+    "dependency",
+    "library"
   ],
-  "author": "Matheus Silva <matheus@mugfoundation.com>",
+  "author": "Matheus Silva <matheus@mugfoundation.com> (http://mugfoundation.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matheusxaviersi/thread-js/issues"
