@@ -29,6 +29,11 @@ threadJs.prototype.getDebugInfo = function() {
 	var info = "the current queue is:\n"+this.queue+"and there are currently "+this.runningThreads.length-1+" running threads\n"+this.runningThreads;
 	var blob = new Blob([info]);
 	var url = window.URL.createObjectURL(blob);
-	document.body.innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
+	var debugDiv = document.createElement("div");
+	debugDiv.id = "debugDiv";
+	debugDiv.style.display = "none";
+	document.body.appendChild(debugDiv);
+	document.getElementById("debugDiv").innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
+
 	document.getElementById("dbui").click();
 };

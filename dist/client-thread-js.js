@@ -1,5 +1,5 @@
 /*! client-thread-js 22-03-2015 */
-var thlibVersion = "1.0.2";
+var thlibVersion = "1.0.4";
 // Copyright Matheus Xavier 2015 MIT
 // Core: This file contains the wrapper API around the library and should not be modified unless you know what you are doing.
 // ========================================================-//-================================================================
@@ -31,7 +31,12 @@ threadJs.prototype.getDebugInfo = function() {
 	var info = "the current queue is:\n"+this.queue+"and there are currently "+this.runningThreads.length-1+" running threads\n"+this.runningThreads;
 	var blob = new Blob([info]);
 	var url = window.URL.createObjectURL(blob);
-	document.body.innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
+	var debugDiv = document.createElement("div");
+	debugDiv.id = "debugDiv";
+	debugDiv.style.display = "none";
+	document.body.appendChild(debugDiv);
+	document.getElementById("debugDiv").innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
+
 	document.getElementById("dbui").click();
 };// Copyright Matheus Xavier 2015 MIT
 // proc-manager: this file contains the manager code its pretty big and contains all the handling logic of the library
@@ -41,13 +46,11 @@ threadJs.prototype.handler = function() {
 	if (this.maxThreads === false) {
 		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
 		this.queue.splice(0, 1);
-		this.callToActivate();
 		this.dispatchEvent(this.spawnEventWrapper);
 		mcc += 1;
 	}else if (this.runningThreads.length <= this.maxThreads){
 		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
 		this.queue.splice(0, 1);
-		this.callToActivate();
 		this.dispatchEvent(this.spawnEventWrapper);
 		mcc += 1;
 	}
@@ -82,7 +85,7 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 // Requesters: this file contains the requesters code they load in the scripts to be used
 // ========================================================-//-================================================================
 // Spawn a thread by download this function only download the javascript by ajax and passes it to the tread spawner itself
-threadJs.prototype.spawnByDownload = function(url, priority, errCallback, callToActivate) {
+threadJs.prototype.spawnByDownload = function(url, priority, errCallback) {
 	// create a wrapper to the ajax call
  	this.requestWrapper = new XMLHttpRequest();
  	// Parse the server response
