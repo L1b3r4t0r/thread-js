@@ -1,14 +1,23 @@
 {
-  "name": "tread-js",
+  "name": "thread-js",
   "version": "1.0.0",
-  "description": "A library to run asyncronous multi-threading in browser",
-  "main": "src/core/core.js",
+  "description": "A library to use muti-threading in the browser.",
+  "main": "dist/thread.js.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matheusxaviersi/thread-js.git"
+  },
   "keywords": [
-    "threading"
+    "threading",
+    "client-side"
   ],
-  "author": "Matheus Silva",
-  "license": "MIT"
+  "author": "Matheus Silva <matheus@mugfoundation.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matheusxaviersi/thread-js/issues"
+  },
+  "homepage": "https://github.com/matheusxaviersi/thread-js"
 }
