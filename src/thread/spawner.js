@@ -6,7 +6,6 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 	// creates a blob object
 	mime = mime || "text/javascript";
 	var blob = new Blob([data], mime);
-	this.item = [];
 	this.item[0] = blob;
 	this.item[1] = priority;
 	this.item[2] = this.lastPidInQueue + 1;

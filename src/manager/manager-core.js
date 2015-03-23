@@ -16,3 +16,6 @@ threadJs.prototype.handler = function() {
 	}
 	this.lastPidInQueue = this.queue.length-1;
 };
+threadJs.prototype.end_worker = function(worker) {
+	this.runningThreads.terminate();
+};

@@ -55,6 +55,9 @@ threadJs.prototype.handler = function() {
 		mcc += 1;
 	}
 	this.lastPidInQueue = this.queue.length-1;
+};
+threadJs.prototype.end_worker = function(worker) {
+	this.runningThreads.terminate();
 };// Copyright Matheus Xavier 2015 MIT
 // Spawner: this file contains the spawner code
 // ========================================================-//-================================================================
@@ -63,7 +66,6 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 	// creates a blob object
 	mime = mime || "text/javascript";
 	var blob = new Blob([data], mime);
-	this.item = [];
 	this.item[0] = blob;
 	this.item[1] = priority;
 	this.item[2] = this.lastPidInQueue + 1;
