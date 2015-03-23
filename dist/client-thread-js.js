@@ -1,5 +1,5 @@
 /*! client-thread-js 22-03-2015 */
-var thlibVersion = "1.0.4";
+var thlibVersion = "1.1.0-alpha";
 // Copyright Matheus Xavier 2015 MIT
 // Core: This file contains the wrapper API around the library and should not be modified unless you know what you are doing.
 // ========================================================-//-================================================================
@@ -21,48 +21,76 @@ function threadJs(maxThreads){
 		}
 	}
 	this.maxThreads = maxThreads || false;
+	this.ranThreads = [];
 	this.queue = [];
 	this.runningThreads = [];
+	this.debugInfo = [];
 	this.spawnEventWrapper = new Event('ThreadReady');
 	this.stop = false;
 	return this;
 }
 threadJs.prototype.getDebugInfo = function() {
-	var info = "the current queue is:\n"+this.queue+"and there are currently "+this.runningThreads.length-1+" running threads\n"+this.runningThreads;
+	var info = debugInfo;
 	var blob = new Blob([info]);
 	var url = window.URL.createObjectURL(blob);
 	var debugDiv = document.createElement("div");
 	debugDiv.id = "debugDiv";
 	debugDiv.style.display = "none";
 	document.body.appendChild(debugDiv);
-	document.getElementById("debugDiv").innerHTML = '<a href="'+url+'" download="debugInfo.txt" id="dbui">dl</a>';
-
+	document.getElementById("debugDiv").innerHTML = '<a href="'+url+'" download="debugInfo.log" id="dbui">dl</a>';
 	document.getElementById("dbui").click();
+};
+threadJs.prototype.logDebugInfo = function(text){
+	var i = 0;
+	this.debugInfo[i] = text;
+	i++;
 };// Copyright Matheus Xavier 2015 MIT
 // proc-manager: this file contains the manager code its pretty big and contains all the handling logic of the library
 // ========================================================-//-================================================================
 threadJs.prototype.handler = function() {
-	var mcc = 0;
+	var nextInQueue = this.queue[0][2];
 	if (this.maxThreads === false) {
-		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
+		this.runningThreads[nextInQueue] = new Worker(window.URL.createObjectURL(this.queue[0][0]));
+		copyThreadInfo(nextInQueue);
 		this.queue.splice(0, 1);
 		this.dispatchEvent(this.spawnEventWrapper);
-		mcc += 1;
 	}else if (this.runningThreads.length <= this.maxThreads){
-		this.runningThreads[this.queue[mcc][2]] = new Worker(window.URL.createObjectURL(this.queue[mcc][0]));
+		this.runningThreads[nextInQueue] = new Worker(window.URL.createObjectURL(this.queue[0][0]));
+		copyThreadInfo(nextInQueue);
 		this.queue.splice(0, 1);
 		this.dispatchEvent(this.spawnEventWrapper);
-		mcc += 1;
+	}else{
+		this.logDebugInfo("Thread limit exeded on: "+nextInQueue);
 	}
-	this.lastPidInQueue = this.queue.length-1;
+	if (mcc > this.queue.length) {
+		this.stop = true;
+	}
 };
-threadJs.prototype.end_worker = function(worker) {
+threadJs.prototype.endWorker = function(worker) {
 	this.runningThreads.terminate();
+};
+threadJs.prototype.copyThreadInfo = function(pid){
+	this.ranThreads[pid] = this.queue[0];
 };// Copyright Matheus Xavier 2015 MIT
 // Spawner: this file contains the spawner code
 // ========================================================-//-================================================================
 // spawner function receives the textual data and converts it to a blob to be used by the tread-manager
 threadJs.prototype.spawner = function(data, priority, mime) {
+	// get last item in queue
+	this.lastPidInQueue = this.queue.length - 1;
+	var item = this.getBlob(data, mime);
+	if (priority < this.lastPidInQueue && this.noQueueOverride === false || priority >= this.lastPidInQueue) {
+		this.queue[priority] = item;
+	}else if (this.noQueueOverride === true){
+		while (priority < this.lastPidInQueue){
+			priority++;
+		}
+		if (priority > this.queue.length) {
+			this.queue[priority] = item;
+		}
+	}
+};
+threadJs.prototype.getBlob = function(data, mime) {
 	// creates a blob object
 	mime = mime || "text/javascript";
 	var blob = new Blob([data], mime);
@@ -70,19 +98,18 @@ threadJs.prototype.spawner = function(data, priority, mime) {
 	this.item[1] = priority;
 	this.item[2] = this.lastPidInQueue + 1;
 	this.item[3] = false;
-	if (priority < this.queue.length && this.noQueueOverride === false || priority >= this.queue.length) {
-		this.queue[priority] = this.item;
-	}else if (this.noQueueOverride === true){
-		while (priority < this.queue.length){
-			priority += 1;
-		}
-		if (priority > this.queue.length) {
-			this.queue[priority] = this.item;
-		}
+	return this.item;
+};
+threadJs.prototype.startParser = function(){
+	if(this.stop === true){
+		this.stop = false;
 	}
-	while (this.stop !== true || this.queue <= 0){
+	while (this.stop === false || this.queue <= 0){
 		this.handler();	
 	}
+};
+threadJs.prototype.stopParser = function(){
+	this.stop = true;
 };// Copyright Matheus Xavier 2015 MIT
 // Requesters: this file contains the requesters code they load in the scripts to be used
 // ========================================================-//-================================================================
