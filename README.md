@@ -1,4 +1,4 @@
-Thread-js
+Thread-js [![Codacy Badge](https://www.codacy.com/project/badge/b14dbd42aa06488f846f73d6944c8888)](https://www.codacy.com/public/matheusxaviersilva/thread-js)
 ----------
 The library uses invoked Ajax or script tags marked with the class "tjs-script-include" and downloads them from the src or if marked with class "tjs-script-execute" and needs to get a unique id so the queue can keep track on it use a "data-tjs-pid" attribute and "data-tjs-priority" for setting its order inside the array. Take extra care since conflicting pid`s may overwrite a running thread.
 
