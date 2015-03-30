@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"debug",
+				"debugInfo"
+			],
+			[
+				"ne",
+				"nextInQueue"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"ge",
+				"getBlob"
+			],
+			[
+				"th",
+				"threadJs"
+			],
+			[
 				"t",
 				"threadJs"
 			],
@@ -24,10 +52,10 @@
 	"buffers":
 	[
 		{
-			"file": "CONTRIBUTING.md",
+			"file": "src/core/core.js",
 			"settings":
 			{
-				"buffer_size": 308,
+				"buffer_size": 1740,
 				"line_ending": "Windows"
 			}
 		},
@@ -35,32 +63,39 @@
 			"file": "src/manager/manager-core.js",
 			"settings":
 			{
-				"buffer_size": 948,
+				"buffer_size": 1163,
 				"line_ending": "Windows"
 			}
 		},
 		{
+			"file": "src/thread/spawner.js",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 1329,
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/User/js-grunt.sublime-build",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 400.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 126.0,
 		"history":
 		[
+			"cmd grunt",
+			"grunt"
 		]
 	},
 	"distraction_free":
@@ -76,12 +111,19 @@
 	[
 		"/C/Users/Matheus/Documents/GitHub/thread-js",
 		"/C/Users/Matheus/Documents/GitHub/thread-js/src",
+		"/C/Users/Matheus/Documents/GitHub/thread-js/src/core",
+		"/C/Users/Matheus/Documents/GitHub/thread-js/src/manager",
 		"/C/Users/Matheus/Documents/GitHub/thread-js/src/thread"
 	],
 	"file_history":
 	[
-		"/C/Users/Matheus/AppData/Local/Temp/fz3temp-1/index.php",
+		"/C/Users/Matheus/AppData/Local/Temp/Rar$DRa0.935/flattyshadow.js",
+		"/C/Users/Matheus/Documents/GitHub/thread-js/package.json",
+		"/C/Users/Matheus/Documents/GitHub/thread-js/CONTRIBUTING.md",
 		"/C/Users/Matheus/Documents/GitHub/thread-js/README.md",
+		"/C/Users/Matheus/Documents/GitHub/Muglib/package.json",
+		"/C/Users/Matheus/AppData/Roaming/Sublime Text 3/Packages/User/js-grunt.sublime-build",
+		"/C/Users/Matheus/AppData/Local/Temp/fz3temp-1/index.php",
 		"/C/Users/Matheus/Documents/GitHub/thread-js/.travis.yml",
 		"/F/ltemplate/template.js",
 		"/F/ltemplate/mug.css",
@@ -135,27 +177,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "CONTRIBUTING.md",
+					"file": "src/core/core.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 308,
+						"buffer_size": 1740,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								308,
-								308
+								1740,
+								1740
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 135.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -167,19 +210,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 948,
+						"buffer_size": 1163,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								857,
-								857
+								1163,
+								1163
 							]
 						],
 						"settings":
 						{
+							"spell_check": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -192,23 +236,25 @@
 				},
 				{
 					"buffer": 2,
+					"file": "src/thread/spawner.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1329,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								624,
+								624
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -251,6 +297,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
