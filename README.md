@@ -1,5 +1,7 @@
 Thread-js ![License](https://img.shields.io/badge/License-MIT-blue.svg) [![Codacy Badge](https://www.codacy.com/project/badge/b14dbd42aa06488f846f73d6944c8888)](https://www.codacy.com/public/matheusxaviersilva/thread-js) [![Build Status](https://travis-ci.org/matheusxaviersi/thread-js.svg)](https://travis-ci.org/matheusxaviersi/thread-js)
 ----------
+
+[![Join the chat at https://gitter.im/matheusxaviersi/thread-js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/matheusxaviersi/thread-js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 The library uses invoked Ajax or script tags marked with the class "tjs-script-include" and downloads them from the src or if marked with class "tjs-script-execute" and needs to get a unique id so the queue can keep track on it use a "data-tjs-pid" attribute and "data-tjs-priority" for setting its order inside the array. Take extra care since conflicting pid`s may overwrite a running thread.
 
 And the same applies to the queue conflicting priority is overwritten with the last one passed unless the option no-queue-override is set in the object instantiation then the index is summed up 1 until it reaches a free position obs: this option is not recommended as it will run synchronously on larger queues it may impact performance.
