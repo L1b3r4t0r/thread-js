@@ -1,24 +1,32 @@
 module.exports = function (grunt) {
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
-      concat: {
-        options: {
-          stripBanners: true,
-          separator: '',
-          banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\nvar thlibVersion = "<%= pkg.version %>";\n'
-        },
-        dist: {
-          src: ['src/core/core.js', 'src/manager/manager-core.js', 'src/thread/spawner.js', 'src/thread/requesters.js', 'src/**/*.js'],
-          dest: 'dist/<%= pkg.name %>.js'
+      ts: {
+        files: [{src: ['src/**/*.ts'], dest: '/dist/thread.js'}],
+        options:{
+            comments: false,
+            declaration: true,
+            module: 'commonjs'
         }
       },
+//      concat: {
+//        options: {
+//          stripBanners: true,
+//          separator: '/*=====================--========================*/',
+//          banner: '/*! <%= pkg.name %> compiled in the lab <%= grunt.template.today("yyyy-mm-dd") %> version <%= pkg.version %>*/\n'
+//        },
+//        dist: {
+//          src: ['src/core/core.js', 'src/manager/manager-core.js', 'src/thread/spawner.js', 'src/thread/requesters.js', 'src/**/*.js'],
+//          dest: 'dist/thread.js'
+//        }
+//      },
       uglify: {
         options: {
-          banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\nvar thlibVersion = "<%= pkg.version %>";\n'
+          banner: '/*! <%= pkg.name %> compiled in the lab <%= grunt.template.today("yyyy-mm-dd") %> version <%= pkg.version %>*/\n'
         },
         dist: {
             files: {
-              'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+              'dist/thread.min.js': ['dist/thread.js']
             }
           }
       },
@@ -30,7 +38,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks("grunt-ts");
 
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['ts','uglify']);
     grunt.registerTask('linted-build', ['jshint','concat', 'uglify']);
 };
